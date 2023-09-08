@@ -26,4 +26,28 @@ public class FirstController
     {
         return "first/goodbye";
     }
+
+    @GetMapping("/calculator")
+    public String calculator(@RequestParam(value = "a", required = false) Double a,
+                             @RequestParam(value = "b",required = false) Double b,
+                             @RequestParam(value = "operation",required = false) String operation, Model model)
+    {
+        switch (operation)
+        {
+            case "multiplication": model.addAttribute("message", "Получаем что, " + a + " * " + b + " = " + (a*b) );
+                break;
+            case "addition": model.addAttribute("message", "Получаем что, " + a + " + " + b + " = " + (a+b) );
+                break;
+            case "subtraction": model.addAttribute("message", "Получаем что, " + a + " - " + b + " = " + (a-b) );
+                break;
+            case "division":
+            {
+                if (b != 0 ) model.addAttribute("message", "Получаем что, " + a + " / " + b + " = " + (a/b) );
+                else model.addAttribute("message", "Делить на ноль нельзя! " + "b" + " = " + b );
+            }
+                break;
+
+        }
+        return "first/calculator";
+    }
 }
