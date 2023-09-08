@@ -46,6 +46,7 @@ public class FirstController
                 else model.addAttribute("message", "Делить на ноль нельзя! " + "b" + " = " + b );
             }
                 break;
+            default: model.addAttribute("message", "Операция введена неккоректно! ");
 
         }
         return "first/calculator";
