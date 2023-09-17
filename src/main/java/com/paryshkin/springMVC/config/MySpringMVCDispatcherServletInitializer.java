@@ -1,9 +1,14 @@
 package com.paryshkin.springMVC.config;
 
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.ServletException;
+//import jakarta.servlet.ServletContext;
+//import jakarta.servlet.ServletException;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 public class MySpringMVCDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer
 {
@@ -33,4 +38,5 @@ public class MySpringMVCDispatcherServletInitializer extends AbstractAnnotationC
         aContext.addFilter("hiddenHttpMethodFilter",
                 new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
     }
+
 }
