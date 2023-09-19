@@ -15,10 +15,10 @@ public class CalculatorController
     {
         return "calculator/enter";
     }
-//    @PostMapping()
-//    public String create(@ModelAttribute("calculator") Calculator calculator)
-//    {
-//        calculator.calc();
-//        return "redirect:/calculator";
-//    }
+    @PostMapping()
+    public String create(@ModelAttribute("calculator") Calculator calculator)
+    {
+        calculator.calc();
+        return "calculator/total";
+    }
 }
