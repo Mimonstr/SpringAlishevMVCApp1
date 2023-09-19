@@ -34,19 +34,19 @@ public class FirstController
     {
         switch (operation)
         {
-            case "multiplication": model.addAttribute("message", "Получаем что, " + a + " * " + b + " = " + (a*b) );
+            case "multiplication": model.addAttribute("message", "Total: " + a + " * " + b + " = " + (a*b) );
                 break;
-            case "addition": model.addAttribute("message", "Получаем что, " + a + " + " + b + " = " + (a+b) );
+            case "addition": model.addAttribute("message", "Total: " + a + " + " + b + " = " + (a+b) );
                 break;
-            case "subtraction": model.addAttribute("message", "Получаем что, " + a + " - " + b + " = " + (a-b) );
+            case "subtraction": model.addAttribute("message", "Total: " + a + " - " + b + " = " + (a-b) );
                 break;
             case "division":
             {
-                if (b != 0 ) model.addAttribute("message", "Получаем что, " + a + " / " + b + " = " + (a/b) );
-                else model.addAttribute("message", "Делить на ноль нельзя! " + "b" + " = " + b );
+                if (b != 0 ) model.addAttribute("message", "Total: " + a + " / " + b + " = " + (a/b) );
+                else model.addAttribute("message", "You can not divide by zero! " + "b" + " = " + b );
             }
                 break;
-            default: model.addAttribute("message", "Операция введена неккоректно! ");
+            default: model.addAttribute("message", "The operation was entered incorrectly! ");
 
         }
         return "first/calculator";
