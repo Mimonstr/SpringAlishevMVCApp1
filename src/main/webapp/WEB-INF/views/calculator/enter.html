@@ -13,8 +13,11 @@
     <label for="secondParameter">Enter second parameter: </label>
     <input type="text" th:field="*{secondParameter}" id="secondParameter"/>
     <br/>
-    <label for="operation">Enter operation: </label>
-    <input type="text" th:field="*{operation}" id="operation"/>
+<!--    <label for="operation">Enter operation(multiplication, addition, subtraction, division): </label>-->
+<!--    <input type="text" th:field="*{operation}" id="operation"/>-->
+<!--    <br/>-->
+    <label for="operation">Enter operation(multiplication, addition, subtraction, division): </label>
+    <input type="text" th:field="*{operation}" id="operation" pattern="(multiplication|addition|subtraction|division)"/>
     <br/>
     <input type="submit" value="Calculate!"/>
 

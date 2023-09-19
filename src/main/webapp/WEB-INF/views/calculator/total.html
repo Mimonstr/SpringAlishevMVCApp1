@@ -6,15 +6,14 @@
 </head>
 <body>
 
-<!--<div th:each = "person : ${people}">-->
-<!--    <a th:href = "@{/people/{id}(id=${person.getId()})}" th:text = "${person.getName()}">user</a>-->
-<!--</div>-->
+<p th:text = "'Result'" />
+<a th:text = "${calculator.getResult()}">Result</a>
+<br/>
+<hr/>
 
-<!--<br/>-->
-<!--<hr/>-->
+<a href="/calculator">Enter new parameters</a>
 
-<!--<a href="/calculator/enter">Enter parameters</a>-->
-<p th:text = "'Your expression I counted, that is, what I got'" />
+
 
 </body>
 </html>

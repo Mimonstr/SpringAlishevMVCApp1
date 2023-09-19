@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Calculator
 {
+    private int id;
     private double firstParameter;
     private double secondParameter;
     private double result;
@@ -17,6 +18,22 @@ public class Calculator
 //        this.secondParameter = secondParameter;
 //        this.operation = operation;
 //    }
+
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public double getResult()
+    {
+        return result;
+    }
 
     public double getFirstParameter()
     {
