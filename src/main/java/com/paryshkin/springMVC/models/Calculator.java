@@ -3,7 +3,10 @@ package com.paryshkin.springMVC.models;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 @Component
+@XmlRootElement
 public class Calculator
 {
     private int id;

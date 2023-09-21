@@ -2,6 +2,7 @@ package com.paryshkin.springMVC.controllers;
 
 import com.paryshkin.springMVC.dao.CalculatorDAO;
 import com.paryshkin.springMVC.models.Calculator;
+import com.paryshkin.springMVC.models.XMLHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,14 @@ public class CalculatorController
     public String create(@ModelAttribute("calculator") Calculator calculator)
     {
         calculator.calc();
+        try
+        {
+            XMLHandler.saveToXML(calculator, "C:\\Users\\tupik\\Desktop\\monstr566\\calculation.xml");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         return "calculator/total";
     }
 }
