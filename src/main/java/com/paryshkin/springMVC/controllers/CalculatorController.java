@@ -34,6 +34,7 @@ public class CalculatorController
     public String create(@ModelAttribute("calculator") Calculator calculator)
     {
         calculator.calc();
+        System.out.println(calculator.getResult());
         try
         {
             XMLHandler.saveToXML(calculator, "C:\\Users\\tupik\\Desktop\\monstr566\\calculation.xml");

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Component
-@XmlRootElement
+@XmlRootElement(name = "calculator") // Указываем имя элемента в XML
 public class Calculator
 {
     private int id;
@@ -67,21 +67,23 @@ public class Calculator
     {
         this.operation = operation;
     }
-    public double calc()
+    public void calc()
     {
         switch (operation)
         {
-            case "multiplication": return (result = firstParameter * secondParameter);
-            case "addition": return (result = firstParameter + secondParameter);
-            case "subtraction": return (result = firstParameter - secondParameter);
+            case "multiplication": result = firstParameter * secondParameter;
+                break;
+            case "addition": result = firstParameter + secondParameter;
+                break;
+            case "subtraction": result = firstParameter - secondParameter;
+                break;
             case "division":
             {
-                if (secondParameter != 0 ) return (result = firstParameter / secondParameter);
-                else return -1; //model.addAttribute("message", "You can not divide by zero! " + "b" + " = " + b );
+                if (secondParameter != 0 ) result = firstParameter / secondParameter;
+
             }
-            //default: //model.addAttribute("message", "The operation was entered incorrectly! ");
+            break;
 
         }
-        return 0;
     }
 }
