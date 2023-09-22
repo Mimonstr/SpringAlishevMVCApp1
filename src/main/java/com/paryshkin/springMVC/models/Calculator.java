@@ -4,23 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 @Component
-@XmlRootElement(name = "calculator") // Указываем имя элемента в XML
+@XmlRootElement(name = "Expression") // Указываем имя элемента в XML
+@XmlType(propOrder = {"id", "firstParameter", "secondParameter", "operation", "result"})
 public class Calculator
 {
     private int id;
     private double firstParameter;
     private double secondParameter;
-    private double result;
     private String operation;
+    private double result;
 
-//    public Calculator(double firstParameter, double secondParameter, String operation)
-//    {
-//        this.firstParameter = firstParameter;
-//        this.secondParameter = secondParameter;
-//        this.operation = operation;
-//    }
+    public void setResult(double result) {}
+
 
 
     public int getId()
