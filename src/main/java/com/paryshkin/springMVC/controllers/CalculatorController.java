@@ -33,16 +33,51 @@ public class CalculatorController
     @PostMapping()
     public String create(@ModelAttribute("calculator") Calculator calculator)
     {
-        calculator.calc();
-        System.out.println(calculator.getResult());
+        if (calculator.getFile().exists())
+        {
+            try
+            {
+                Calculator loadedCalculator = XMLHandler.loadFromXML(calculator.getFile().getAbsolutePath());
+                calculator.setFirstParameter(loadedCalculator.getFirstParameter());
+                calculator.setSecondParameter(loadedCalculator.getSecondParameter());
+                calculator.setOperation(loadedCalculator.getOperation());
+                calculator.calc();
+                return "calculator/total";
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            calculator.calc();
+            System.out.println(calculator.getResult());
+            try
+            {
+                XMLHandler.saveToXML(calculator, "C:\\Users\\tupik\\Desktop\\monstr566\\calculation.xml");
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        return "calculator/total";
+    }
+
+    @GetMapping("/load")//Загрузка из файла
+    public String load(@ModelAttribute("calculator") Calculator calculator,Model model)
+    {
         try
         {
-            XMLHandler.saveToXML(calculator, "C:\\Users\\tupik\\Desktop\\monstr566\\calculation.xml");
+            calculator = XMLHandler.loadFromXML("calculation.xml");
+            model.addAttribute("calculator", calculator);
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-        return "calculator/total";
+        return "calculator/loadFile"; // Имя вашего HTML-файла
     }
 }

@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+import java.io.File;
 
 @Component
 @XmlRootElement(name = "Expression") // Указываем имя элемента в XML
-@XmlType(propOrder = {"id", "firstParameter", "secondParameter", "operation", "result"})
+@XmlType(propOrder = {"id", "firstParameter", "secondParameter", "operation", "result", "file"})
 public class Calculator
 {
     private int id;
@@ -16,8 +18,22 @@ public class Calculator
     private double secondParameter;
     private String operation;
     private double result;
+    //@XmlTransient
+    private File file;
 
-    public void setResult(double result) {}
+    public File getFile()
+    {
+        return file;
+    }
+
+    public void setFile(File file)
+    {
+        this.file = file;
+    }
+
+    // ... сеттеры, геттеры и расчет
+
+    public void setResult(double result){}
 
 
 

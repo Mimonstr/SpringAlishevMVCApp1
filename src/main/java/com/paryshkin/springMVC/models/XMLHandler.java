@@ -7,15 +7,12 @@ import javax.xml.bind.Unmarshaller;
 
 public class XMLHandler
 {
-
     public static void saveToXML(Calculator calculator, String filePath) throws Exception
     {
-        System.out.println("Trying to save to: " + filePath);
         JAXBContext context = JAXBContext.newInstance(Calculator.class);
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshaller.marshal(calculator, new File(filePath));
-        System.out.println(calculator.getResult());
     }
 
     public static Calculator loadFromXML(String filePath) throws Exception
