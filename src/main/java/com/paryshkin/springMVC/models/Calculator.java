@@ -13,91 +13,53 @@ import java.io.File;
 @XmlType(propOrder = {"id", "firstParameter", "secondParameter", "operation", "result", "file"})
 public class Calculator
 {
-    private int id;
-    private double firstParameter;
-    private double secondParameter;
-    private String operation;
-    private double result;
-    //@XmlTransient
-    private File file;
+    private String expression;
+    private int result;
 
-    public File getFile()
+    public String getExpression()
     {
-        return file;
+        return expression;
     }
 
-    public void setFile(File file)
+    public void setExpression(String expression)
     {
-        this.file = file;
+        this.expression = expression;
     }
 
-    // ... сеттеры, геттеры и расчет
-
-    public void setResult(double result){}
-
-
-
-    public int getId()
-    {
-        return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
-    }
-
-    public double getResult()
+    public int getResult()
     {
         return result;
     }
 
-    public double getFirstParameter()
+    public void setResult(int result)
     {
-        return firstParameter;
+        this.result = result;
     }
 
-    public void setFirstParameter(double firstParameter)
+    public void calculateResult()
     {
-        this.firstParameter = firstParameter;
-    }
+        String[] parts = expression.split("[\\+\\-\\*/]"); // Разбиваем выражение на числа
+        int num1 = Integer.parseInt(parts[0]); // Парсим первое число
+        int num2 = Integer.parseInt(parts[1]); // Парсим второе число
+        char operator = expression.charAt(parts[0].length()); // Получаем оператор
 
-    public double getSecondParameter()
-    {
-        return secondParameter;
-    }
-
-    public void setSecondParameter(double secondParameter)
-    {
-        this.secondParameter = secondParameter;
-    }
-
-    public String getOperation()
-    {
-        return operation;
-    }
-
-    public void setOperation(String operation)
-    {
-        this.operation = operation;
-    }
-    public void calc()
-    {
-        switch (operation)
-        {
-            case "multiplication": result = firstParameter * secondParameter;
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
                 break;
-            case "addition": result = firstParameter + secondParameter;
+            case '-':
+                result = num1 - num2;
                 break;
-            case "subtraction": result = firstParameter - secondParameter;
+            case '*':
+                result = num1 * num2;
                 break;
-            case "division":
-            {
-                if (secondParameter != 0 ) result = firstParameter / secondParameter;
-
-            }
-            break;
-
+            case '/':
+                result = num1 / num2;
+                break;
+            default:
+                System.out.println("Unsupported operator: " + operator);
         }
     }
+
+
 }

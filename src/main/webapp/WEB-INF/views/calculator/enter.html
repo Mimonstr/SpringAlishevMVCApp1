@@ -7,18 +7,9 @@
 <body>
 
 <form th:method="POST" th:action="@{/calculator}" th:object="${calculator}">
-    <label for="firstParameter">Enter first parameter: </label>
-    <input type="text" th:field="*{firstParameter}" id="firstParameter"/>
-    <br/>
-    <label for="secondParameter">Enter second parameter: </label>
-    <input type="text" th:field="*{secondParameter}" id="secondParameter"/>
-    <br/>
-    <label for="operation">Enter operation(multiplication, addition, subtraction, division): </label>
-    <input type="text" th:field="*{operation}" id="operation" pattern="(multiplication|addition|subtraction|division)"/>
-    <br/>
-    <label for="fileInput">Load from file:</label>
-    <input type="file" th:field=*{file} id="fileInput"/>
-    <br/>
+    <label for="expression">Enter expression: </label>
+    <input type="text" th:field="*{expression}" id="expression"/>
+    <br/><br/>
     <input type="submit" value="Calculate!"/>
 
 </form>

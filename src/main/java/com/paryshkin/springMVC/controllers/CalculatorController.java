@@ -1,29 +1,16 @@
 package com.paryshkin.springMVC.controllers;
 
-import com.paryshkin.springMVC.dao.CalculatorDAO;
+import com.google.gson.Gson;
 import com.paryshkin.springMVC.models.Calculator;
-import com.paryshkin.springMVC.models.XMLHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/calculator")
 public class CalculatorController
 {
-    private final CalculatorDAO calculatorDAO;
 
-    public CalculatorController(CalculatorDAO calculatorDAO)
-    {
-        this.calculatorDAO = calculatorDAO;
-    }
-    @GetMapping("/show")
-    public String index(Model model)
-    {
-        // Получим все выражения из DAO и передадим на отображение в представление
-        model.addAttribute("expressions", calculatorDAO.index());
-        return "calculator/index";
-    }
+    public CalculatorController() {}
 
     @GetMapping()
     public String index(@ModelAttribute Calculator calculator)
@@ -33,51 +20,11 @@ public class CalculatorController
     @PostMapping()
     public String create(@ModelAttribute("calculator") Calculator calculator)
     {
-        if (calculator.getFile().exists())
-        {
-            try
-            {
-                Calculator loadedCalculator = XMLHandler.loadFromXML(calculator.getFile().getAbsolutePath());
-                calculator.setFirstParameter(loadedCalculator.getFirstParameter());
-                calculator.setSecondParameter(loadedCalculator.getSecondParameter());
-                calculator.setOperation(loadedCalculator.getOperation());
-                calculator.calc();
-                return "calculator/total";
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-        else
-        {
-            calculator.calc();
-            System.out.println(calculator.getResult());
-            try
-            {
-                XMLHandler.saveToXML(calculator, "C:\\Users\\tupik\\Desktop\\monstr566\\calculation.xml");
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
+        calculator.calculateResult(); // Вычисляем результат
+        String jsonResult = new Gson().toJson(calculator); // Преобразуем объект в JSON
+        // Отправьте jsonExpression куда вам нужно
 
         return "calculator/total";
     }
 
-    @GetMapping("/load")//Загрузка из файла
-    public String load(@ModelAttribute("calculator") Calculator calculator,Model model)
-    {
-        try
-        {
-            calculator = XMLHandler.loadFromXML("calculation.xml");
-            model.addAttribute("calculator", calculator);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return "calculator/loadFile"; // Имя вашего HTML-файла
-    }
 }
